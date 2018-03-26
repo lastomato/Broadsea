@@ -1,0 +1,53 @@
+# Copyright 2017 Google Inc. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+info:
+  title: Container VM
+  author: Google Inc.
+  description: Creates a Container VM with the provided Container manifest.
+
+required:
+  - zone
+  - region
+  - tempDataset
+  - cdmDataset
+  - ohdsiDataset
+  - postgresInstanceSuffix
+
+properties:
+  zone:
+    description: Zone in which this VM will run
+    type: string
+  region:
+    description: Region in which the addresses are allocated
+    type: string
+  containerProject:
+    description: Project id where the broadsea images are hosted in gcr.io
+    type: string
+  tempDataset:
+    description: BigQuery dataset for storing temp tables
+    type: string
+  cdmDataset:
+    description: BigQuery dataset for storing the CDM schema
+    type: string
+  ohdsiDataset:
+    description: BigQuery dataset for storing the OHDSI schema
+    type: string
+  postgresInstanceSuffix:
+    description: >
+      A name to uniquify the postgres instance name since instance names can't be re-used.
+      The only reason to change this is when deleting and re-creating a deployment with the
+      same name. Make sure to also change the "gcloud sql users" line in create-deployment.sh
+      if you change this value.
+    type: string
